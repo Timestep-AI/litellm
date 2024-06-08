@@ -37,26 +37,26 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      -
-        name: Build and push
-        uses: docker/build-push-action@v5
-        with:
-          push: true
-          tags: litellm/litellm:${{ github.event.inputs.tag || 'latest' }} 
+      # -
+      #   name: Build and push
+      #   uses: docker/build-push-action@v5
+      #   with:
+      #     push: true
+      #     tags: litellm/litellm:${{ github.event.inputs.tag || 'latest' }} 
       -
         name: Build and push litellm-database image
         uses: docker/build-push-action@v5
         with:
           push: true
           file: Dockerfile.database
-          tags: litellm/litellm-database:${{ github.event.inputs.tag || 'latest' }}
-      -
-        name: Build and push litellm-spend-logs image
-        uses: docker/build-push-action@v5
-        with:
-          push: true
-          file: ./litellm-js/spend-logs/Dockerfile
-          tags: litellm/litellm-spend_logs:${{ github.event.inputs.tag || 'latest' }}
+          tags: mschock/litellm-database:${{ github.event.inputs.tag || 'latest' }}
+      # -
+      #   name: Build and push litellm-spend-logs image
+      #   uses: docker/build-push-action@v5
+      #   with:
+      #     push: true
+      #     file: ./litellm-js/spend-logs/Dockerfile
+      #     tags: litellm/litellm-spend_logs:${{ github.event.inputs.tag || 'latest' }}
       
   # build-and-push-image:
   #   runs-on: ubuntu-latest
